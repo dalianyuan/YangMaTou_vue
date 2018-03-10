@@ -1,0 +1,15 @@
+@charset "utf-8";
+html,body,ul,li,ol,dl,dd,dt,p,h1,h2,h3,h4,h5,h6,form,fieldset,legend,img,input,figure{margin:0;padding:0}
+*{ box-sizing:border-box;}
+body{font-size: 12px;font-family: font-family: 'Helvetica Neue',Tahoma,Arial,PingFangSC-Regular,'Hiragino Sans GB','Microsoft Yahei';display:flex;flex-direction: column;}
+ul,ol,li{list-style:none;}
+b,strong{font-weight:100;}
+em,i{font-style:normal;}
+h1,h2,h3,h4,h5,h6{font-weight:100;font-size:16px;}
+a,u{text-decoration: none;color: #000000;}
+input{outline:none;}
+img{display:block;border:0;}
+html,body{height:100%;}
+.fl{float:left;}
+.fr{float:right;}
+
