@@ -2,7 +2,7 @@
   <div id="app">
 		<div id="header">
 			<div class="fl left">
-				<router-link active-class="active" to="/home"><span>首页</span></router-link>
+				<router-link active-class="active" to="/" exact><span>首页</span></router-link>
 				<router-link active-class="active" to="/community"><span>社区</span></router-link>
 			</div>
 			<div class="fr right">
