@@ -4,6 +4,8 @@ import Home from '@/components/Home'
 import Community from '@/components/Community'
 import Shopcar from '@/components/Shopcar'
 import My from '@/components/My'
+import Like from '@/components/Like'
+import Detail from '@/components/Detail'
 
 Vue.use(Router)
 
@@ -12,7 +14,14 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      children: [
+      	{
+					path: '',
+					name: 'Like',
+					component: Like
+				}
+      ]
     },
     {
       path: '/community',
@@ -28,6 +37,18 @@ export default new Router({
       path: '/my',
       name: 'My',
       component: My
+    },
+    {
+      path: '/detail/:pid',
+      name: 'Detail',
+      component: Detail,
+      children: [
+      	{
+					path: '/detail/:pid',
+					name: 'Like',
+					component: Like
+				}
+      ]
     }
   ]
 })

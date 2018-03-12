@@ -14,6 +14,10 @@ module.exports = {
     	"/home": {
     		target: "http://m.ymatou.com",
     		changeOrigin: true
+    	},
+    	"/item": {
+    		target: "http://m.ymatou.com",
+    		changeOrigin: true
     	}
     },
 

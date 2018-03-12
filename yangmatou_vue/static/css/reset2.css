@@ -9,7 +9,62 @@ h1,h2,h3,h4,h5,h6{font-weight:100;font-size:16px;}
 a,u{text-decoration: none;color: #000000;}
 input{outline:none;}
 img{display:block;border:0;}
-html,body{height:100%;}
+html,body{height:100%;background-color:#f1f1f1;}
 .fl{float:left;}
 .fr{float:right;}
-
+/*公用的类样式*/
+.bgf5{
+	width: 100%;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+.mb5{
+	margin-bottom: .05rem;
+}
+.title{
+	width: 2.4rem;
+    margin: .25rem auto;
+    position: relative;
+    height: 1px;
+    background: #ccc;
+    box-shadow: 0 1px 0 #fff;
+}
+.title:before{
+    position: absolute;
+    content: '';
+    width: .04rem;
+    height: .04rem;
+    border-radius: 50%;
+    background: #ccc;
+    top: -.02rem;
+    right: 0;
+    box-shadow: 0 1px 0 #fff;
+}
+.title:after{
+    position: absolute;
+    content: '';
+    width: .04rem;
+    height: .04rem;
+    border-radius: 50%;
+    background: #ccc;
+    top: -.02rem;
+    left: 0;
+    box-shadow: 0 1px 0 #fff;
+}
+.title>span{
+	display: inline-block;
+    color: #646464;
+    font-size: .16rem;
+    padding: 0 .1rem 0 .4rem;
+    position: absolute;
+    height: .2rem;
+    left: 50%;
+    top: 46%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    line-height: .2rem;
+    text-shadow: 0 1px 0 #fff;
+    white-space: nowrap;
+    background: #f5f5f5 url(../../static/img/tag_xsq-d72323a492.png) 10% 0 no-repeat;
+    background-size: contain;
+}
