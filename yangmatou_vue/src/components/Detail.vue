@@ -280,7 +280,7 @@
 			axios.get("/item/api/getProductDescriptionInfo?productId=" + this.$route.params.pid)
 				.then((res)=>{
 					var infoArr = res.data.result.moduleList;
-					console.log( infoArr );
+//					console.log( infoArr );
 					var length = infoArr.length;
 					for( let i = 0; i < length; i++ ){
 						if( infoArr[i].title == "买家须知" ){

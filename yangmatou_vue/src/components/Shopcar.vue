@@ -1,6 +1,6 @@
 <template>
 	<div id="shopcar">
-		111111
+		我是购物车页面
 	</div>
 </template>
 
@@ -14,5 +14,5 @@
 	}
 </script>
 
-<style>
+<style scoped>
 </style>

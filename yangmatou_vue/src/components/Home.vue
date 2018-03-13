@@ -47,6 +47,7 @@
 			<div class="list">
 				<a href="javascript:;">
 					<div class="img"></div>
+<<<<<<< Updated upstream
 					<span>仅剩 03:25:47</span>
 				</a>
 				<a href="javascript:;">
@@ -68,6 +69,29 @@
 				<a href="javascript:;">
 					<div class="img"></div>
 					<span>仅剩 03:25:47</span>
+=======
+					<span>仅剩 01:21:39</span>
+				</a>
+				<a href="javascript:;">
+					<div class="img"></div>
+					<span>仅剩 02:17:39</span>
+				</a>
+				<a href="javascript:;">
+					<div class="img"></div>
+					<span>仅剩 02:17:39</span>
+				</a>
+				<a href="javascript:;">
+					<div class="img"></div>
+					<span>仅剩 02:17:39</span>
+				</a>
+				<a href="javascript:;">
+					<div class="img"></div>
+					<span>仅剩 05:17:31</span>
+				</a>
+				<a href="javascript:;">
+					<div class="img"></div>
+					<span>仅剩 02:17:39</span>
+>>>>>>> Stashed changes
 				</a>
 			</div>
 		</div>
@@ -166,8 +190,12 @@
 </script>
 
 <style scoped>
+<<<<<<< Updated upstream
 	
 	/*公共的样式*/
+=======
+	/*公用的类样式*/
+>>>>>>> Stashed changes
 	.title {
 		width: 2.4rem;
 		margin: .25rem auto;
@@ -218,8 +246,13 @@
 		background: #f5f5f5 url(../../static/img/tag_xsq-d72323a492.png) 10% 0 no-repeat;
 		background-size: contain;
 	}
+<<<<<<< Updated upstream
 	/*banner开始*/
 	
+=======
+	
+	/*banner开始*/
+>>>>>>> Stashed changes
 	#banner {
 		position: relative;
 		background-color: #fff;
@@ -274,7 +307,10 @@
 	}
 	/*banner结束*/
 	/*限时抢开始*/
+<<<<<<< Updated upstream
 	
+=======
+>>>>>>> Stashed changes
 	#timelimit .list {
 		display: flex;
 		width: 100%;
@@ -298,6 +334,7 @@
 	
 	#timelimit .list>a>span{
 		position: absolute;
+<<<<<<< Updated upstream
 		left: -.51rem;
 		top: 1.02rem;
 		width: 1.88rem;
@@ -307,6 +344,17 @@
 		text-indent: .12rem;
 		transform: scale(.5);
 		background: url(../../static/img/countdown-bg-fb044aac5f.png);
+=======
+		left: -.5rem;
+		top: 1.02rem;
+		width: 1.88rem;
+		height: .32rem;
+		transform: scale(.5);
+		font-size: .19rem;
+		color: #fff;
+		text-indent: .12rem;
+		background: url(../../static/img/countdown-bg-fb044aac5f.png) no-repeat;
+>>>>>>> Stashed changes
 		background-size: contain;
 	}
 	
