@@ -49,11 +49,7 @@
 		data() {
 			return {}
 		},
-<<<<<<< Updated upstream
-		methods:{
-=======
 		methods: {
->>>>>>> Stashed changes
 			login(){
 				this.$router.history.push({
 					name: "Login"

@@ -68,7 +68,6 @@
 
 <style scoped>
 	/*公共的样式*/
-	
 	.title {
 		width: 2.4rem;
 		margin: .25rem auto;
