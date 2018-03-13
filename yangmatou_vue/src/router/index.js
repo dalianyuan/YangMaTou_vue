@@ -5,6 +5,8 @@ import Community from '@/components/Community'
 import Shopcar from '@/components/Shopcar'
 import My from '@/components/My'
 import Like from '@/components/Like'
+import Regist from '@/components/Regist'
+import Login from '@/components/Login'
 import Detail from '@/components/Detail'
 import Detailsmall from '@/components/Detailsmall'
 
@@ -38,6 +40,16 @@ export default new Router({
       path: '/my',
       name: 'My',
       component: My
+    },
+    {
+      path: '/regist',
+      name: 'Regist',
+      component: Regist
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     },
     {
       path: '/detail/:pid',

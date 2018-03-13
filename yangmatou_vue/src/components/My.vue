@@ -9,7 +9,7 @@
 			<div class="c-head">
 				<div class="login">
 					<span class="userIcon"></span>
-					<span>请登录</span>
+					<span @click="login()">请登录</span>
 				</div>
 				<div class="involue">
 					<span>粉丝数&nbsp;0位</span>
@@ -48,6 +48,13 @@
 		name: "My",
 		data() {
 			return {}
+		},
+		methods:{
+			login(){
+				this.$router.history.push({
+					name: "Login"
+				})
+			}
 		}
 	}
 </script>
