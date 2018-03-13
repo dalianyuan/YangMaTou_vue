@@ -34,7 +34,16 @@
 				<!--左侧部分-->
 				<div class="mianLeft">
 					<div class="bigBox" v-for="item in list2">
-						<div @click="getText(item.NoteInfo.NoteId)">
+						<div @click="getText(
+							item.NoteInfo.NoteId,
+							{
+								pic1:item.NoteInfo.TagImage[0].Pic,
+								pic2:item.NoteInfo.TagImage[1].Pic,
+								pic3:item.NoteInfo.TagImage[2].Pic
+							},
+							item.NoteInfo.Title,
+							item.NoteInfo.Content
+							)">
 							<img :src="item.NoteInfo.TagImage[0].Pic" alt="" class="pic1" />
 							<p class="title">{{item.NoteInfo.Title}}</p>
 							<p class="detail">{{item.NoteInfo.Content}}</p>
@@ -50,7 +59,16 @@
 				<!--右侧部分-->
 				<div class="mianRigth">
 					<div class="smallBox" v-for="item in list">
-						<div @click="getText(item.NoteInfo.NoteId)">
+						<div @click="getText(
+							item.NoteInfo.NoteId,
+							{
+								pic1:item.NoteInfo.TagImage[0].Pic,
+								pic2:item.NoteInfo.TagImage[1].Pic,
+								pic3:item.NoteInfo.TagImage[2].Pic
+							},
+							item.NoteInfo.Title,
+							item.NoteInfo.Content
+							)">
 							<img :src="item.NoteInfo.TagImage[0].Pic" alt="" class="pic2" />
 							<p class="title">{{item.NoteInfo.Title}}</p>
 							<p class="detail">{{item.NoteInfo.Content}}</p>
@@ -89,23 +107,26 @@
 
 			axios.get("/note/api/GetSocialDiscoverList?Page=0&pageSize=35&AccessToken=&UserID=&Cookieid=&yid=")
 				.then((res) => {
-					//console.log(res);	
+//					console.log(res);	
 					for(var i = 0; i < res.data.Result.length; i++) {
 						if(i % 2) {
-							this.list2.push(res.data.Result[i])
-						} else {
 							this.list.push(res.data.Result[i])
+						} else {
+							this.list2.push(res.data.Result[i])
 						}
 					}
-					//console.log(res.data.Result[0].NoteInfo.NoteId)
+					console.log(res.data.Result);
 				})
 		},
 		methods: {
-			getText(fid) { //形参
+			getText(fid,pics,title,content) { //形参
 				this.$router.history.push({
 					name: "Detailsmall",
 					params: {
-						fid: fid
+						fid: fid,
+						pics: pics,
+						title: title,
+						content: content
 					}
 				})
 			}
@@ -213,6 +234,7 @@
 	}
 	
 	.name {
+		float: left;
 		width: 0.2rem;
 		height: 0.2rem;
 		border-radius: 50%;

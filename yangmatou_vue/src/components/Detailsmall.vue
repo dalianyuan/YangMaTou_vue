@@ -32,35 +32,34 @@
 					<!--注释部分为mint-ui实现滑动效果，实现时出现bug-->
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
-							<img src="http://pic1.ymatou.com/G02/M0A/D5/C5/CgvUA1qQl--AOBYWAABmveEDqNA184_533_400_w_o.jpg" />
+							<img :src="$route.params.pics.pic1"/>
 						</div>
 						<div class="swiper-slide">
-							<img src="http://pic1.ymatou.com/G02/M0A/D5/C5/CgvUA1qQl--ALFg7AADWhtvXkhY036_325_244_w_t.jpg" />
+							<img :src="$route.params.pics.pic2"/>
 						</div>
 						<div class="swiper-slide">
-							<img src="http://pic1.ymatou.com/G02/M00/DC/85/CgvUBVqQl3-AC3yVAAA_ImAO9Us060_1_1_w_t.jpg" />
+							<img :src="$route.params.pics.pic3"/>
 						</div>
 					</div>
 
 				</div>
 				<ol class="uPic" id="uPic">
-					<li><img src="http://pic1.ymatou.com/G02/M0A/D5/C5/CgvUA1qQl--AOBYWAABmveEDqNA184_533_400_w_o.jpg" /></li>
-					<li><img src="http://pic1.ymatou.com/G02/M0A/D5/C5/CgvUA1qQl--ALFg7AADWhtvXkhY036_325_244_w_t.jpg" /></li>
-					<li><img src="http://pic1.ymatou.com/G02/M00/DC/85/CgvUBVqQl3-AC3yVAAA_ImAO9Us060_1_1_w_t.jpg" /></li>
+					<li><img :src="$route.params.pics.pic1"/></li>
+					<li><img :src="$route.params.pics.pic2"/></li>
+					<li><img :src="$route.params.pics.pic3"/></li>
 				</ol>
 			</div>
 			<!--banner图============结束========-->
 			<!--中间介绍======================-->
 			<div class="detailTitle">
-				<h2>👏好物推荐🎺夏季必囤【欧缇丽保湿喷雾】</h2></div>
+				<h2>{{$route.params.title}}</h2></div>
 			<div class="detailName">
 				<span class="nameImg"><img src="http://pic1.ymatou.com/p5img/upload/userlogo/small/1562136_4f9cf26c479848e49a8003b6006f7bfa_s.png" /></span>
 				<span>手动创造</span>
 				<span></span>
 			</div>
 			<div class="detailSay">
-				#每日推荐#欧缇丽保湿喷雾。透明液体，喷出细密水雾。<br/>
-				<br/> 使用感：水雾很细，很适合空调间里通勤上学随时拿出来喷一喷。开始化妆的时候可以拿出来喷一喷，以免爆皮，或者化妆之后当定妆水来用。总之是一瓶不可或缺的百搭基础款。
+				{{$route.params.content}}
 			</div>
 			<div class="redFont">
 				<em>#空瓶记#</em>
@@ -138,16 +137,6 @@
 					this.list3 = res.data.Result.Products
 				})
 
-		},
-		methods: {
-			getText(fid) { //形参
-				this.$router.history.push({
-					name: "Detailsmall",
-					params: {
-						fid: fid
-					}
-				})
-			}
 		}
 	}
 </script>
@@ -182,7 +171,7 @@
 	.bgpic {
 		display: flex;
 		background: #fff;
-		height: 2.81rem;
+		height: 3.71rem;
 		justify-content: center;
 		position: relative;
 	}
@@ -289,6 +278,7 @@
 		justify-content: flex-end;
 		font-size: 0.1rem;
 		align-items: center;
+		color: #999;
 	}
 	
 	.country>em {
