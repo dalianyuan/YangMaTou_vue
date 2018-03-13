@@ -163,6 +163,14 @@
 			})
 		}
 	}
+	$( document ).scroll( function(){
+		if( $(this).scrollTop() > 1000 ){
+			$( "#gotoTop" ).show();
+		}else{
+			$( "#gotoTop" ).hide();
+		}
+	} )
+	
 </script>
 
 <style scoped>

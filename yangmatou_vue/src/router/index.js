@@ -9,8 +9,6 @@ import Regist from '@/components/Regist'
 import Login from '@/components/Login'
 import Detail from '@/components/Detail'
 import Detailsmall from '@/components/Detailsmall'
-import Regist from '@/components/Regist'
-import Login from '@/components/Login'
 
 Vue.use(Router)
 
