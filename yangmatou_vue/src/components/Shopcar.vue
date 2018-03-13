@@ -1,5 +1,7 @@
 <template>
-	<div id="shopcar"></div>
+	<div id="shopcar">
+		111111
+	</div>
 </template>
 
 <script>

@@ -18,6 +18,10 @@ module.exports = {
     	"/item": {
     		target: "http://m.ymatou.com",
     		changeOrigin: true
+    	},
+    	"/note/api" : {
+    		target:"http://m.ymatou.com",
+    		changeOrigin : true
     	}
     },
 

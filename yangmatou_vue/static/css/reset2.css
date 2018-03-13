@@ -8,7 +8,7 @@ em,i{font-style:normal;}
 h1,h2,h3,h4,h5,h6{font-weight:100;font-size:16px;}
 a,u{text-decoration: none;color: #000000;}
 input{outline:none;}
-img{display:block;border:0;}
+img{/*display:block;*/border:0;}
 html,body{height:100%;background-color:#f1f1f1;}
 .fl{float:left;}
 .fr{float:right;}

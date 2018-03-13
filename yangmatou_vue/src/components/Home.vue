@@ -34,14 +34,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="bullet_wrap swiper-pagination">
-				<!--<span class="bullet"></span>
-				<span class="bullet"></span>
-				<span class="bullet"></span>
-				<span class="bullet"></span>
-				<span class="bullet"></span>
-				<span class="bullet"></span>-->
-			</div>
+			<div class="bullet_wrap swiper-pagination"></div>
 		</div>
 		<!--banner结束-->
 		

@@ -6,6 +6,7 @@ import Shopcar from '@/components/Shopcar'
 import My from '@/components/My'
 import Like from '@/components/Like'
 import Detail from '@/components/Detail'
+import Detailsmall from '@/components/Detailsmall'
 
 Vue.use(Router)
 
@@ -49,6 +50,11 @@ export default new Router({
 					component: Like
 				}
       ]
+    },
+    {
+      path: '/detailsmall/:fid',
+      name: 'Detailsmall',
+      component: Detailsmall
     }
   ]
 })
