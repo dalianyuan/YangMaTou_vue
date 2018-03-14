@@ -56,7 +56,7 @@
 			}
 		},
 		mounted() {
-			axios.get("/home/api/getLikeList?pageNub=2&pageSize=32")
+			axios.get("/home/api/getLikeList?pageNub=1&pageSize=32")
 				.then((res) => {
 					//console.log(res.data.likeProductInfo);
 					this.infoArr = res.data.likeProductInfo;

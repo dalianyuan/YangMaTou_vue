@@ -255,11 +255,42 @@
 				</span>
 			</div>
 			<div class="fr">
-				<a href="javascript:;">加入购物车</a>
+				<a @click="confAdd()" href="javascript:;">加入购物车</a>
 				<a href="javascript:;">立即购买</a>
 			</div>
 		</div>
 		<!--加入购物车或立即购买结束-->
+		
+		<!--点击加入购物车弹出的确认框开始-->
+		<div id="confAdd">
+			<div class="mask"></div>
+			<div class="show">
+				<div class="cont">
+					<div class="info">
+						<img :src="$route.params.pImg" />
+						<div class="desc">
+							<p class="pri"><span>￥</span>{{$route.params.pPrice}}</p>
+							<span>库存充足</span>
+						</div>
+					</div>
+					<div class="amount">
+						<span class="text">
+							购买数量
+						</span>
+						<div class="num fr">
+							<input type="text" value="-" id="minus" disabled/>
+							<span>1</span>
+							<input type="text" value="+" id="plus" disabled/>
+						</div>
+					</div>
+				</div>
+				<div id="ok">确认</div>
+				<div id="close" @click="close()"></div>
+			</div>
+		</div>
+		<!--点击加入购物车弹出的确认框结束-->
+		
+		
 	</div>
 </template>
 
@@ -308,6 +339,14 @@
 				    clickable : true
 			    }
 			})
+		},
+		methods: {
+			confAdd(){
+				$( "#confAdd" ).show();
+			},
+			close(){
+				$( "#confAdd" ).hide();
+			}
 		}
 	}
 </script>
@@ -915,4 +954,117 @@
 	    background-color: #c33;
 	}
 	/*加入购物车或立即购买结束*/
+	
+	/*点击加入购物车弹出的确认框开始*/
+	#confAdd{
+		display: none;
+	}
+	#confAdd .mask{
+	    position: fixed;
+	    left: 0;
+	    top: 0;
+	    width: 100%;
+	    height: 100%;
+	    background-color: rgba(0,0,0,.6);
+	    z-index: 1111;
+	}
+	#confAdd .show{
+	    position: fixed;
+	    width: 100%;
+	    left: 0;
+	    bottom: 0;
+	    background: #fff;
+	    z-index: 11111;
+	}
+	#confAdd .cont{
+		position: relative;
+	    width: 100%;
+	    padding: .12rem .15rem 0;
+	    background: #fff;
+	}
+	#confAdd .info{
+		position: relative;
+	    width: 100%;
+	    min-height: 1rem;
+	    padding-bottom: .1rem;
+	}
+	#confAdd .info>img{
+	    width: 1.2rem;
+	    height: 1.2rem;
+	    border: .01rem solid #d8d8d8;
+	    position: absolute;
+	    top: -.35rem;
+	    left: 0;
+	    border-radius: .02rem;
+	}
+	#confAdd .info>.desc{
+		padding-left: 1.3rem;
+	} 
+	#confAdd .info .pri{
+	    font-size: .18rem;
+	    color: #c33;
+	    line-height: .26rem;
+	    height: .26rem;
+	    font-family: STHeitiSC-Medium;
+	    margin-bottom: .03rem;
+	}
+	#confAdd .info .pri>span{
+		font-size: .13rem;
+	}
+	#confAdd .desc>span{
+		color: #646464;
+	}
+	#confAdd .amount{
+		color: #646464;
+	    padding: .13rem 0;
+	    margin-bottom: .35rem;
+	    border-top: .01rem solid #dedede;
+	    border-bottom: .01rem solid #dedede;
+	}
+	#confAdd .amount>.text{
+		display: inline-block;
+		width: .56rem;
+		height: .3rem;
+		line-height: .3rem;
+	}
+	#confAdd .num>input{
+	    display: inline-block;
+	    width: .3rem;
+	    height: .3rem;
+	    line-height: .3rem;
+	    font-size: .16rem;
+	    text-align: center;
+	    color: #646464;
+	    background-color: #e8e8e8;
+	    border: none;
+	    border-radius: .03rem;
+	}
+	#confAdd .num>span{
+	    display: inline-block;
+	    width: .37rem;
+	    height: .3rem;
+	    line-height: .3rem;
+	    text-align: center;
+	}
+	#ok{
+	    width: 100%;
+	    height: .45rem;
+	    line-height: .45rem;
+	    text-align: center;
+	    color: #fff;
+	    background: #c33;
+	    font-size: .16rem;
+	}
+	#close{
+		position: absolute;
+	    display: block;
+	    width: .26rem;
+	    height: .26rem;
+	    top: .05rem;
+	    right: .1rem;
+	    background: url(../../static/img/close.png) 50% no-repeat;
+	    background-size: .16rem .16rem;
+	}
+	/*点击加入购物车弹出的确认框结束*/
+	
 </style>
