@@ -17,14 +17,7 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home,
-      children: [
-      	{
-					path: '',
-					name: 'Like',
-					component: Like
-				}
-      ]
+      component: Home
     },
     {
       path: '/community',
@@ -52,16 +45,9 @@ export default new Router({
       component: Login
     },
     {
-      path: '/detail/:pid',
+      path: '/detail',
       name: 'Detail',
-      component: Detail,
-      children: [
-      	{
-					path: '/detail/:pid',
-					name: 'Like',
-					component: Like
-				}
-      ]
+      component: Detail
     },
     {
       path: '/detailsmall/:fid',

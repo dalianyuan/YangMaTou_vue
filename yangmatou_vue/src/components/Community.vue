@@ -98,10 +98,10 @@
 		mounted() {
 
 			var mySwiper = new Swiper('.swiper-container', {
+				loop: true,
+				autoplay: true,
 				pagination: {
 					el: '.swiper-pagination',
-					bulletElement: 'span',
-					clickable: true
 				}
 			})
 
@@ -115,7 +115,7 @@
 							this.list2.push(res.data.Result[i])
 						}
 					}
-					console.log(res.data.Result);
+//					console.log(res.data.Result);
 				})
 		},
 		methods: {

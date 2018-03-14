@@ -83,7 +83,7 @@
 							</div>
 						</div>
 						<div class="pic">
-							<img src="../../static/img/CgvUBFhi--qAMFMRAAZBGGIhv-8922_3_4_w_l.jpg"/>
+							<img :src="$route.params.pImg"/>
 						</div>
 					</div>
 				</div>
@@ -243,7 +243,7 @@
 		<!--假一赔十结束-->
 		
 		<!--猜你喜欢开始-->
-		<router-view></router-view>
+		<Like />
 		<!--猜你喜欢结束-->
 		
 		<!--加入购物车或立即购买开始-->
@@ -264,6 +264,7 @@
 </template>
 
 <script>
+	import Like from '@/components/Like';
 	import axios from "axios";
 	export default {
 		name: "Detail",
@@ -275,6 +276,9 @@
 				tips2: "",
 				keyList: []
 			}
+		},
+		components: {
+			Like
 		},
 		mounted: function() {
 			axios.get("/item/api/getProductDescriptionInfo?productId=" + this.$route.params.pid)

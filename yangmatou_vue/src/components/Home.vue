@@ -127,7 +127,7 @@
 		<!--洋货集结束-->
 
 		<!--猜你喜欢开始-->
-		<router-view></router-view>
+		<Like />
 		<!--猜你喜欢结束-->
 
 		<!--底部开始-->
@@ -148,29 +148,32 @@
 </template>
 
 <script>
+	import Like from '@/components/Like';
 	export default {
 		name: "Home",
 		data() {
 			return {}
 		},
+		components: {
+			Like
+		},
 		mounted() {
 			var mySwiper = new Swiper('.swiper-container', {
+				loop: true,
+				autoplay: true,
 				pagination: {
 					el: '.swiper-pagination',
-					bulletElement: 'span',
-					clickable: true
 				}
 			})
 		}
 	}
-	$( document ).scroll( function(){
-		if( $(this).scrollTop() > 1000 ){
-			$( "#gotoTop" ).show();
-		}else{
-			$( "#gotoTop" ).hide();
+	$(document).scroll(function() {
+		if($(this).scrollTop() > 1000) {
+			$("#gotoTop").show();
+		} else {
+			$("#gotoTop").hide();
 		}
-	} )
-	
+	})
 </script>
 
 <style scoped>
@@ -229,37 +232,10 @@
 	
 	/*banner开始*/
 	#banner {
-		position: relative;
 		background-color: #fff;
 		width: 100%;
 		height: 2.6rem;
 		overflow: hidden;
-	}
-	
-	#banner .img {
-		width: 100%;
-		position: absolute;
-		overflow: hidden;
-	}
-	
-	#banner .img:nth-of-type(2) {
-		left: 3.75rem;
-	}
-	
-	#banner .img:nth-of-type(3) {
-		left: 7.5rem;
-	}
-	
-	#banner .img:nth-of-type(4) {
-		left: 11.25rem;
-	}
-	
-	#banner .img:nth-of-type(5) {
-		left: 15rem;
-	}
-	
-	#banner .img:nth-of-type(6) {
-		left: 18.75rem;
 	}
 	
 	#banner .img>a {
@@ -281,8 +257,8 @@
 		width: 100%;
 	}
 	/*banner结束*/
-	
 	/*限时抢开始*/
+	
 	#timelimit .list {
 		display: flex;
 		width: 100%;
@@ -304,7 +280,7 @@
 		margin-right: .08rem;
 	}
 	
-	#timelimit .list>a>span{
+	#timelimit .list>a>span {
 		position: absolute;
 		left: -.5rem;
 		top: 1.02rem;
