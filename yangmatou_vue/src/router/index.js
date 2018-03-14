@@ -35,6 +35,11 @@ export default new Router({
       component: My
     },
     {
+      path: '/like',
+      name: 'Like',
+      component: Like
+    },
+    {
       path: '/regist',
       name: 'Regist',
       component: Regist

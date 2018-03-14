@@ -4,7 +4,7 @@
 		<div id="picSwiper" class="swiper-container">
 			<div class="img_wrap swiper-wrapper">
 				<div class="img swiper-slide">
-					<img :src="$route.params.pImg"/>
+					<img ref="goodsImg" :src="$route.params.pImg"/>
 				</div>
 				<div class="img swiper-slide">
 					<img src="../../static/img/CgvUA1g_qkSAYMfQAAI2oT0Lz98276_335_447_w_l.jpg"/>
@@ -19,9 +19,9 @@
 			<div class="cont">
 				<div class="name">
 					<span>包邮 包税</span>
-					<span>{{$route.params.pName}}</span>
+					<span ref="goodsName">{{$route.params.pName}}</span>
 				</div>
-				<div class="price">
+				<div class="price" ref="goodsPrice">
 					￥{{$route.params.pPrice}}
 				</div>
 			</div>
@@ -141,8 +141,8 @@
 							<i>4.8</i>
 						</span>
 						<span>
-							<img :src="$route.params.pCouIcon" alt="" />
-							{{$route.params.pCountry}}
+							<img ref="countryImg" :src="$route.params.pCouIcon" alt="" />
+							<b ref="countryName">{{$route.params.pCountry}}</b>
 						</span>
 					</div>
 				</div>
@@ -262,7 +262,7 @@
 		<!--加入购物车或立即购买结束-->
 		
 		<!--点击加入购物车弹出的确认框开始-->
-		<div id="confAdd">
+		<div id="confAdd" ref="add" v-if="flag">
 			<div class="mask"></div>
 			<div class="show">
 				<div class="cont">
@@ -279,12 +279,12 @@
 						</span>
 						<div class="num fr">
 							<input type="text" value="-" id="minus" disabled/>
-							<span>1</span>
+							<span ref="goodsNum">1</span>
 							<input type="text" value="+" id="plus" disabled/>
 						</div>
 					</div>
 				</div>
-				<div id="ok">确认</div>
+				<div id="ok" @click="goods_add()">确认</div>
 				<div id="close" @click="close()"></div>
 			</div>
 		</div>
@@ -305,7 +305,16 @@
 				pics2: [],
 				tips1: "",
 				tips2: "",
-				keyList: []
+				keyList: [],
+				flag: false,
+				goodsInfo: {
+					goodsImg: "",
+					goodsName: "",
+					goodsPrice: "",
+					goodsNum: "",
+					countryImg: "",
+					countryName: ""
+				}
 			}
 		},
 		components: {
@@ -330,6 +339,14 @@
 							this.tips2 = infoArr[i].text;
 						}
 					}
+					
+					this.goodsInfo.goodsImg = this.$refs.goodsImg.src,
+					this.goodsInfo.goodsName = this.$refs.goodsName.innerText,
+					this.goodsInfo.goodsPrice = this.$refs.goodsPrice.innerText,
+					this.goodsInfo.goodsNum = this.$refs.goodsNum.innerText,
+					this.goodsInfo.countryImg = this.$refs.countryImg.src,
+					this.goodsInfo.countryName = this.$refs.countryName.innerText
+					
 				})
 				
 			var mySwiper = new Swiper('.swiper-container',{
@@ -342,10 +359,14 @@
 		},
 		methods: {
 			confAdd(){
-				$( "#confAdd" ).show();
+				this.flag = true;
 			},
 			close(){
-				$( "#confAdd" ).hide();
+				this.flag = false;
+			},
+			goods_add(){
+				this.$store.dispatch("goods_addA", this.goodsInfo);
+				console.log( this.goodsInfo );
 			}
 		}
 	}
@@ -956,9 +977,6 @@
 	/*加入购物车或立即购买结束*/
 	
 	/*点击加入购物车弹出的确认框开始*/
-	#confAdd{
-		display: none;
-	}
 	#confAdd .mask{
 	    position: fixed;
 	    left: 0;
