@@ -49,10 +49,6 @@
 		</div>
 		<!--商品列表结束-->
 		
-		<!--猜你喜欢开始-->
-		<Like />
-		<!--猜你喜欢结束-->
-		
 		<!--去结算开始-->
 		<div id="operate">
 			<div class="l">
@@ -70,7 +66,12 @@
 			</div>
 		</div>
 		<!--去结算结束-->
-
+		
+		
+		<!--猜你喜欢开始-->
+		<Like />
+		<!--猜你喜欢结束-->
+		
 	</div>
 </template>
 
@@ -81,6 +82,9 @@
 		data(){
 			return {
 			}
+		},
+		components: {
+			Like
 		}
 	}
 </script>
@@ -189,11 +193,11 @@
 	}
 	#shop_wrap .gInfo>div{
 	    width: 100%;
-	    line-height: .14rem;
+	    line-height: .16rem;
 	    padding-right: .08rem;
 	    font-family: STHeitiSC-Medium;
 	    text-overflow: ellipsis;
-	    -webkit-line-clamp: 3;
+	    -webkit-line-clamp: 2;
 	    -webkit-box-orient: vertical;
 	    display: -webkit-box;
 	    display: -ms-flexbox;

@@ -290,7 +290,6 @@
 		</div>
 		<!--点击加入购物车弹出的确认框结束-->
 		
-		
 	</div>
 </template>
 
@@ -366,7 +365,8 @@
 			},
 			goods_add(){
 				this.$store.dispatch("goods_addA", this.goodsInfo);
-				console.log( this.goodsInfo );
+				this.flag = false;
+//				console.log( this.goodsInfo );
 			}
 		}
 	}

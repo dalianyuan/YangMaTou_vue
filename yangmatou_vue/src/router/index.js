@@ -4,7 +4,6 @@ import Home from '@/components/Home'
 import Community from '@/components/Community'
 import Shopcar from '@/components/Shopcar'
 import My from '@/components/My'
-import Like from '@/components/Like'
 import Regist from '@/components/Regist'
 import Login from '@/components/Login'
 import Detail from '@/components/Detail'
@@ -33,11 +32,6 @@ export default new Router({
       path: '/my',
       name: 'My',
       component: My
-    },
-    {
-      path: '/like',
-      name: 'Like',
-      component: Like
     },
     {
       path: '/regist',
