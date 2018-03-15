@@ -1,12 +1,12 @@
 <template>
 	<div>
 		<div class="Community">
-			<router-link to="/" class="logoBox"><img src="../../static/img/logo.png" alt="" class="logo" /></router-link>
+			<div class="logoBox"><img src="../../static/img/logo.png" alt="" class="logo" /></div>
 			<div class="navigate">
-				<router-link to="/" class="homePage" active-class="active" exact>
+				<router-link to="/" class="homePage">
 					<span>首页</span>
 				</router-link>
-				<router-link to="/community" class="homePage" active-class="active">
+				<router-link to="/community" class="homePage" active-class="active" exact>
 					<span>社区</span>
 				</router-link>
 			</div>
@@ -137,6 +137,19 @@
 <style src="../../static/css/Header.css"></style>
 
 <style scoped>
+	
+	.Community{
+		background: #fff;
+		margin-bottom: .1rem;
+	}
+	.active>span{
+		display: inline-block;
+		height: .33rem;
+		line-height: .33rem;
+	    color: #383838;
+    	border-bottom: 2px solid #cc3333;
+	}
+	
 	/*以下是主体部分================================================*/
 	.mainPart {
 		width: 100%;

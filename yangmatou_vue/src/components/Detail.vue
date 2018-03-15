@@ -1,5 +1,22 @@
 <template>
 	<div>
+		<!--详情页头部开始-->
+		<div class="top">
+			<div class="logoBox"><img src="../../static/img/logo.png" alt="" class="logo" /></div>
+			<div class="navigate">
+				<router-link to="/shopcar">
+					<span>购物车</span>
+				</router-link>
+				<router-link to="/">
+					<span>首页</span>
+				</router-link>
+				<router-link to="/my">
+					<span>我的</span>
+				</router-link>
+			</div>
+		</div>
+		<!--详情页头部结束-->
+		
 		<!--详情页swiper开始-->
 		<div id="picSwiper" class="swiper-container">
 			<div class="img_wrap swiper-wrapper">
@@ -373,6 +390,23 @@
 </script>
 
 <style scoped>
+	
+	/*头部开始*/
+	.top{
+		background: #fff;
+		height: .4rem;
+		border-bottom: .01rem solid #DEDEDE;
+	}
+	.top a{
+		display: inline-block;
+		height: .4rem;
+		width: .4rem;
+		text-align: center;
+		line-height: .4rem;
+	    color: #ccc;
+	}
+	/*头部结束*/
+	
 	/*详情页swiper开始*/
 	#picSwiper{
 		width: 100%;

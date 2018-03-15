@@ -1,5 +1,9 @@
 <template>
 	<div id="home">
+		<!--header开始-->
+		<TopHeader />
+		<!--header结束-->
+		
 		<!--banner开始-->
 		<div id="banner" class="swiper-container">
 			<div class="img_wrap swiper-wrapper">
@@ -148,6 +152,7 @@
 </template>
 
 <script>
+	import TopHeader from '@/components/TopHeader';
 	import Like from '@/components/Like';
 	export default {
 		name: "Home",
@@ -155,6 +160,7 @@
 			return {}
 		},
 		components: {
+			TopHeader,
 			Like
 		},
 		mounted() {
