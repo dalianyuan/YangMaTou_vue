@@ -10,6 +10,7 @@ const store = new Vuex.Store({
 	mutations: {
 		goods_addM(state, data){
 			state.goodsList.push( data );
+			localStorage.goodsList = state.goodsList;
 		}
 	},
 	actions: {

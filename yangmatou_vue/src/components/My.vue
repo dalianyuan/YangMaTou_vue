@@ -2,8 +2,12 @@
 	<div id="my">
 		<div id="head">
 			<div>个人中心</div>
-			<router-link to="shopcar">购物车</router-link>
-			<router-link to="/">首页</router-link>
+			<router-link to="shopcar">
+				<img src="../../static/img/car.png"/>
+			</router-link>
+			<router-link to="/">
+				<img src="../../static/img/home.png"/>
+			</router-link>
 		</div>
 		<div id="content">
 			<div class="c-head">
@@ -82,9 +86,11 @@
 		position: absolute;
 		width: .4rem;
 		height: .4rem;
+		text-align: center;
 		line-height: .4rem;
 		color: #ccc;
 		font-size: .14rem;
+		padding-top: .04rem;
 	}
 	
 	#head>a:nth-of-type(1) {
@@ -93,6 +99,11 @@
 	
 	#head>a:nth-of-type(2) {
 		right: 0;
+	}
+	
+	#head>a>img{
+		width: .18rem;
+		height: .18rem;
 	}
 	
 	#content .c-head {

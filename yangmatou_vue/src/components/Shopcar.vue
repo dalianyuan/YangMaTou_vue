@@ -2,8 +2,12 @@
 	<div id="shopcar">
 		<div id="head">
 			<div>购物车 ( <span>3</span> ) </div>
-			<router-link to="/">首页</router-link>
-			<router-link to="my">我的</router-link>
+			<router-link to="/">
+				<img src="../../static/img/home.png"/>
+			</router-link>
+			<router-link to="my">
+				<img src="../../static/img/my.png"/>
+			</router-link>
 		</div>
 		<div class="notice">海外买手会根据现行国家政策要求，通过不同的物流方式分别发货，其实对你没有影响啦~</div>
 		
@@ -18,8 +22,8 @@
 					<div class="sInfo">
 						<p>小枫叶Sunny</p>
 						<p>
-							<img src="../../static/img/America.png" alt="" />
-							<span class="country">美国</span>
+							<img :src="item.countryImg" alt="" />
+							<span class="country">{{item.countryName}}</span>
 						</p>
 					</div>
 				</div>
@@ -34,10 +38,10 @@
 						<p><img src="../../static/img/you.png" alt="" />官方直邮</p>
 					</div>
 					<div class="operation">
-						<div class="price">{{item.goodsPrice}}</div>
+						<div class="price">￥{{item.goodsPrice}}</div>
 						<div class="update">
 							<input type="text" value="-" id="minus" disabled/>
-							<span ref="goodsNum">1</span>
+							<span ref="goodsNum">{{item.goodsNum}}</span>
 							<input type="text" value="+" id="plus" disabled/>						
 						</div>
 						<img src="../../static/img/del.png" alt="" />
@@ -113,9 +117,11 @@
 		position: absolute;
 		width: .4rem;
 		height: .4rem;
+		text-align: center;
 		line-height: .4rem;
 		color: #ccc;
 		font-size: .14rem;
+		padding-top: .04rem;
 	}
 	
 	#head>a:nth-of-type(1) {
@@ -124,6 +130,11 @@
 	
 	#head>a:nth-of-type(2) {
 		right: 0;
+	}
+	
+	#head>a>img{
+		width: .18rem;
+		height: .18rem;
 	}
 	/*头部结束*/
 	
@@ -325,7 +336,5 @@
 	    background-color: #9b9b9b;
 	}
 	/*去结算结束*/
-	
-	
 	
 </style>

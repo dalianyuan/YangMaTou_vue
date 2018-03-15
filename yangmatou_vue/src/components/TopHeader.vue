@@ -5,8 +5,12 @@
 			<router-link active-class="active" to="/community"><span>社区</span></router-link>
 		</div>
 		<div class="fr right">
-			<router-link to="/shopcar">购物车</router-link>
-			<router-link to="/my">我的</router-link>
+			<router-link to="/shopcar">
+				<img src="../../static/img/car.png"/>
+			</router-link>
+			<router-link to="/my">
+				<img src="../../static/img/my.png"/>
+			</router-link>
 		</div>
 	</div>
 </template>
@@ -47,6 +51,11 @@
 	#header .right>a {
 		display: inline-block;
 		height: .4rem;
+		padding-top: .04rem;
 		line-height: .4rem;
+	}
+	#header .right>a img{
+		width: .18rem;
+		height: .18rem;
 	}
 </style>

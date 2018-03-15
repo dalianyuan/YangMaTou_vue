@@ -1,7 +1,9 @@
 <template>
 	<div id="login">
 		<div class="title">
-			<span></span>
+			<router-link to="/my">
+				<span></span>
+			</router-link>
 			登录
 		</div>
 		<div class="login">
@@ -46,7 +48,7 @@
 	    text-align: center;
 	    background-color: #fff;
 	}
-	.title>span{
+	.title span{
 		position: absolute;
 	    display: block;
 	    width: .12rem;
