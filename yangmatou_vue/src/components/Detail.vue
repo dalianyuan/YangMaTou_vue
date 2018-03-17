@@ -345,7 +345,7 @@
 			Like
 		},
 		mounted: function() {
-			axios.get("/item/api/getProductDescriptionInfo" + this.$route.params.pid)
+			axios.get("/item/api/getProductDescriptionInfo?productId=" + this.$route.params.pid)
 				.then((res) => {
 					var infoArr = res.data.result.moduleList;
 					console.log( infoArr );
