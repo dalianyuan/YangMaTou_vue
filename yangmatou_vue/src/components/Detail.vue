@@ -315,6 +315,7 @@
 <script>
 	import Like from '@/components/Like';
 	import axios from "axios";
+	import { Toast } from 'mint-ui';
 	export default {
 		name: "Detail",
 		data() {
@@ -339,6 +340,7 @@
 			Like
 		},
 		mounted: function() {
+			console.log(this.$route.params.pid);
 			axios.get("/item/api/getProductDescriptionInfo?productId=" + this.$route.params.pid)
 				.then((res) => {
 					var infoArr = res.data.result.moduleList;
@@ -385,7 +387,10 @@
 				this.goodsInfo.goodsNum = this.$refs.goodsNum.innerText;
 				this.$store.dispatch("goods_addA", this.goodsInfo);
 				this.flag = false;
-				alert( "哈尼,加入购物车成功~" );
+				Toast({
+				    message: '哈尼,加入购物车成功~',
+				    duration: 1400
+				});
 				console.log(this.goodsInfo);
 			},
 			
@@ -397,7 +402,10 @@
 			/*点击数量减少*/
 			minus() {
 				if( this.$refs.goodsNum.innerText == "1" ){
-					alert( "不能再减啦! 已经剩最后一件了 o(╥﹏╥)o" );
+					Toast({
+					    message: '不能再减啦! 已经剩最后一件了 o(╥﹏╥)o',
+					    duration: 1400
+					});
 					return;
 				}
 				this.$refs.goodsNum.innerText--;
@@ -1167,7 +1175,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: rgba(0, 0, 0, .6);
-		z-index: 1111;
+		z-index: 111;
 	}
 	
 	#confAdd .show {

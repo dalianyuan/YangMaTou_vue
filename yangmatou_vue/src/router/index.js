@@ -44,7 +44,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/detail',
+      path: '/detail/:pid',
       name: 'Detail',
       component: Detail
     },
