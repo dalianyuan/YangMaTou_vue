@@ -19,7 +19,7 @@ module.exports = {
     		target: "http://m.ymatou.com",
     		changeOrigin: true
     	},
-    	"/note/api" : {
+    	"/note" : {
     		target:"http://m.ymatou.com",
     		changeOrigin : true
     	}

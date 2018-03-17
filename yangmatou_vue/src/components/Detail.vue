@@ -149,13 +149,15 @@
 		<!--卖家店铺开始-->
 		<div id="seller">
 			<div class="info">
-				<div class="pic"></div>
+				<div class="pic">
+					<img :src="goodsInfo.sellerImg"/>
+				</div>
 				<div>
-					<div class="name">xan411</div>
+					<div class="name">{{goodsInfo.sellerName}}</div>
 					<div class="country">
 						<span>
 							<i>专业买手</i>
-							<i>4.8</i>
+							<i>{{goodsInfo.sellerPoint}}</i>
 						</span>
 						<span>
 							<img ref="countryImg" :src="goodsInfo.countryImg" alt="" />
@@ -327,12 +329,15 @@
 				keyList: [],
 				flag: false,
 				goodsInfo: {
-					goodsImg: this.$route.params.pImg,
-					goodsName: this.$route.params.pName,
-					goodsPrice: this.$route.params.pPrice,
+					goodsImg: "",
+					goodsName: "",
+					goodsPrice: "",
 					goodsNum: 1,//默认商品数量为1 
-					countryImg: this.$route.params.pCouIcon,
-					countryName: this.$route.params.pCountry
+					countryImg: "",
+					countryName: "",
+					sellerName: "",
+					sellerImg: "",
+					sellerPoint: ""
 				}
 			}
 		},
@@ -340,11 +345,10 @@
 			Like
 		},
 		mounted: function() {
-			console.log(this.$route.params.pid);
-			axios.get("/item/api/getProductDescriptionInfo?productId=" + this.$route.params.pid)
+			axios.get("/item/api/getProductDescriptionInfo" + this.$route.params.pid)
 				.then((res) => {
 					var infoArr = res.data.result.moduleList;
-					//					console.log( infoArr );
+					console.log( infoArr );
 					var length = infoArr.length;
 					for(let i = 0; i < length; i++) {
 						if(infoArr[i].title == "买家须知") {
@@ -361,7 +365,27 @@
 					}
 					
 				})
-
+			
+			axios.get("/home/api/getLikeList?pageNub=1&pageSize=32&" + this.$route.params.pid)
+				.then((res) => {
+					console.log(res.data.likeProductInfo);
+					var likeProductInfo = res.data.likeProductInfo;
+					for( var i = 0; i < likeProductInfo.length; i++ ){
+						if( this.$route.params.pid == likeProductInfo[i].id ){
+							console.log( likeProductInfo[i] );
+							this.goodsInfo.goodsImg = likeProductInfo[i].pic,
+							this.goodsInfo.goodsName = likeProductInfo[i].name,
+							this.goodsInfo.goodsPrice = likeProductInfo[i].price,
+							this.goodsInfo.goodsNum = likeProductInfo[i],
+							this.goodsInfo.countryImg = likeProductInfo[i].sellerInfo.countryIconUrl,
+							this.goodsInfo.countryName = likeProductInfo[i].sellerInfo.countryName
+							this.goodsInfo.sellerName = likeProductInfo[i].sellerInfo.name,
+							this.goodsInfo.sellerImg = likeProductInfo[i].sellerInfo.avatarUrl,
+							this.goodsInfo.sellerPoint = likeProductInfo[i].sellerInfo.sellerDSR.DSRPoint.point
+						}
+					}
+				});
+			
 			var mySwiper = new Swiper('.swiper-container', {
 				pagination: {
 					el: '.swiper-pagination',
@@ -780,8 +804,10 @@
 		height: .3rem;
 		overflow-x: hidden;
 		border-radius: 100%;
-		background: url(../../static/img/413235_5d182d0f907344a6977f04e500b642e8_m.jpg);
-		background-size: cover;
+	}
+	
+	#seller .info .pic>img{
+		width: 100%;
 	}
 	
 	#seller .info>div:nth-of-type(2) {

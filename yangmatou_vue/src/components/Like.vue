@@ -7,15 +7,7 @@
 		</div>
 		<ul class="list">
 			<li v-for="item in infoArr">
-				<router-link :to="{name: 'Detail', 
-					params:{
-						pid:item.id, 
-						pImg:item.pic, 
-						pName:item.name, 
-						pPrice:item.price,
-						pCountry:item.sellerInfo.countryName,
-						pCouIcon:item.sellerInfo.countryIconUrl
-					}}">
+				<router-link :to="{name: 'Detail', params:{pid:item.id}}">
 					<div class="img-div">
 						<img class="proImg" :src="item.pic" alt="" />
 						<img class="icon" src="http://s1.ymatou.com/homem/images/icon_goods_activity-3ebdcdc998.png" />
