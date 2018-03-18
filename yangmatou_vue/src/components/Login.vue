@@ -8,13 +8,11 @@
 		</div>
 		<div class="login">
 			<form action="">
-				<input type="text" name="uname" id="uname" placeholder="输入用户名/邮箱/手机号码"/>
-				<input type="text" name="upsw" id="upsw" placeholder="输入登录密码"/>
-				<label for="">
-					<input type="checkbox" />
-					<span>两周内免登陆</span>
-				</label>
-				<button>登录</button>
+				<input type="text" v-model="newUsername" placeholder="输入用户名/邮箱/手机号码"  />
+				<input type="password" v-model="newPwd" placeholder="输入登录密码"   />
+				<div>注销登录</div>
+				<div v-show="showTishi" class="showTishi">{{warning}}</div>
+				<button @click="Login()">登录</button>
 				<div class="other">
 					<router-link to="/regist">快速注册</router-link>
 					<a class="fr" href="javascript:;">下载app找回密码</a>
@@ -25,10 +23,39 @@
 </template>
 
 <script>
+	import axios from 'axios';
 	export default {
 		name: "Login",
 		data() {
-			return {}
+			return {
+				showTishi : false,
+				newUsername :"",
+				warning :"",
+				newPwd :""
+			}
+		},
+		methods : {
+			Login(){
+				if(this.newUsername==""||this.newPwd==""){
+					alert("请输入用户名和密码")
+					return;
+				}
+				axios.post("/api/login",{
+					username : this.newUsername,
+					pwd : this.newPwd
+				})
+				.then((res) => {
+					console.log(res)
+					if(res.data.status==1){
+						alert("登录成功,点击确认2秒后将会跳转")
+						setTimeout(()=>{
+							this.$router.push('/')
+						},2000)
+					}else{
+						alert(res.data.message)
+					}
+				})
+			}
 		}
 	}
 </script>

@@ -22,6 +22,10 @@ module.exports = {
     	"/note" : {
     		target:"http://m.ymatou.com",
     		changeOrigin : true
+    	},
+    	"/api" :{
+    		target : "http://localhost:3000",
+    		changeOrigin : true
     	}
     },
 

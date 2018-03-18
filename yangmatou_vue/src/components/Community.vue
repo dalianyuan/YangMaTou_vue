@@ -34,16 +34,7 @@
 				<!--左侧部分-->
 				<div class="mianLeft">
 					<div class="bigBox" v-for="item in list2">
-						<div @click="getText(
-							item.NoteInfo.NoteId,
-							{
-								pic1:item.NoteInfo.TagImage[0].Pic,
-								pic2:item.NoteInfo.TagImage[1].Pic,
-								pic3:item.NoteInfo.TagImage[2].Pic
-							},
-							item.NoteInfo.Title,
-							item.NoteInfo.Content
-							)">
+						<div @click="getText(item.NoteInfo.NoteId)">
 							<img :src="item.NoteInfo.TagImage[0].Pic" alt="" class="pic1" />
 							<p class="title">{{item.NoteInfo.Title}}</p>
 							<p class="detail">{{item.NoteInfo.Content}}</p>
@@ -59,16 +50,7 @@
 				<!--右侧部分-->
 				<div class="mianRigth">
 					<div class="smallBox" v-for="item in list">
-						<div @click="getText(
-							item.NoteInfo.NoteId,
-							{
-								pic1:item.NoteInfo.TagImage[0].Pic,
-								pic2:item.NoteInfo.TagImage[1].Pic,
-								pic3:item.NoteInfo.TagImage[2].Pic
-							},
-							item.NoteInfo.Title,
-							item.NoteInfo.Content
-							)">
+						<div @click="getText(item.NoteInfo.NoteId)">
 							<img :src="item.NoteInfo.TagImage[0].Pic" alt="" class="pic2" />
 							<p class="title">{{item.NoteInfo.Title}}</p>
 							<p class="detail">{{item.NoteInfo.Content}}</p>
@@ -119,15 +101,10 @@
 				})
 		},
 		methods: {
-			getText(fid,pics,title,content) { //形参
+			getText(fid) { //形参
 				this.$router.history.push({
 					name: "Detailsmall",
-					params: {
-						fid: fid,
-						pics: pics,
-						title: title,
-						content: content
-					}
+					params: { fid: fid }
 				})
 			}
 		}

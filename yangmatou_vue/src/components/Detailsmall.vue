@@ -31,35 +31,27 @@
 		  			</mt-swipe>-->
 					<!--注释部分为mint-ui实现滑动效果，实现时出现bug-->
 					<div class="swiper-wrapper">
-						<div class="swiper-slide">
-							<img :src="$route.params.pics.pic1"/>
-						</div>
-						<div class="swiper-slide">
-							<img :src="$route.params.pics.pic2"/>
-						</div>
-						<div class="swiper-slide">
-							<img :src="$route.params.pics.pic3"/>
+						<div class="swiper-slide" v-for="img in imgList" v-model="imgList">
+							<img :src="img.Pic"/>
 						</div>
 					</div>
 
 				</div>
 				<ol class="uPic" id="uPic">
-					<li><img :src="$route.params.pics.pic1"/></li>
-					<li><img :src="$route.params.pics.pic2"/></li>
-					<li><img :src="$route.params.pics.pic3"/></li>
+					<li v-for="img in imgList"><img :src="img.Pic"/></li>
 				</ol>
 			</div>
 			<!--banner图============结束========-->
 			<!--中间介绍======================-->
 			<div class="detailTitle">
-				<h2>{{$route.params.title}}</h2></div>
+				<h2>{{title}}</h2></div>
 			<div class="detailName">
-				<span class="nameImg"><img src="http://pic1.ymatou.com/p5img/upload/userlogo/small/1562136_4f9cf26c479848e49a8003b6006f7bfa_s.png" /></span>
-				<span>手动创造</span>
+				<span class="nameImg"><img :src="userLogo" /></span>
+				<span>{{userName}}</span>
 				<span></span>
 			</div>
 			<div class="detailSay">
-				{{$route.params.content}}
+				{{cont}}
 			</div>
 			<div class="redFont">
 				<em>#空瓶记#</em>
@@ -118,23 +110,51 @@
 		data() {
 			return {
 				list3: [],
-				list4: []
+				list4: [],
+				imgList: [],
+				title: "",
+				cont: "",
+				userLogo: "",
+				userName: ""
 			}
+		},
+		watch: {
+			
+			imgList(){
+				setTimeout(()=>{
+					var mySwiper = new Swiper('.swiper-container', {
+						pagination: {
+							el: '.swiper-pagination',
+							bulletElement: 'span',
+							clickable: true
+						}
+					})
+				}, 0)
+			}
+			
 		},
 		mounted() {
 
-			var mySwiper = new Swiper('.swiper-container', {
-				pagination: {
-					el: '.swiper-pagination',
-					bulletElement: 'span',
-					clickable: true
-				}
-			})
-
 			axios.get("/note/api/GetSimilarProductAndNoteAsync?Page=0&pageSize=10&NoteId=100843545&Channel=3")
 				.then((res) => {
-					this.list4 = res.data.Result.Notes
 					this.list3 = res.data.Result.Products
+					this.list4 = res.data.Result.Notes
+//					console.log( this.list3, this.list4 );
+				})
+				
+			axios.get("/note/api/GetSocialDiscoverList?Page=0&pageSize=35&AccessToken=&UserID=&Cookieid=&yid=" + this.$route.params.fid)
+				.then((res)=>{
+//					console.log( this.$route.params.fid );
+//					console.log( res.data.Result );
+					for( var i = 0; i < res.data.Result.length; i++ ){
+						if( this.$route.params.fid == res.data.Result[i].NoteInfo.NoteId ){
+							this.imgList = res.data.Result[i].NoteInfo.TagImage;
+							this.title = res.data.Result[i].NoteInfo.Title;
+							this.cont = res.data.Result[i].NoteInfo.Content;
+							this.userLogo = res.data.Result[i].UserInfo.UserLogo;
+							this.userName = res.data.Result[i].UserInfo.UserName;
+						}
+					}
 				})
 
 		}
@@ -232,7 +252,13 @@
 		font-size: 0.12rem;
 	}
 	
+	.detailName>span:nth-of-type(2){
+		float: left;
+		margin: .05rem 0 0 .21rem;
+	}
+	
 	.nameImg {
+		float: left;
 		width: 0.25rem;
 		height: 0.25rem;
 	}

@@ -11,25 +11,25 @@
 				<div class="center">
 					<!--表单控件部分============================-->
 					<div class="inputBox">
-						<input type="tel" id="tel" placeholder="输入手机号" />
+						<input type="tel" v-model="tel" placeholder="输入手机号" @blur="telPhone()"/>
 					</div>
 					<div class="inputBox">
-						<input type="text" id="verify" placeholder="输入图形验证码" />
+						<input type="text" v-model="code" placeholder="输入图形验证码" @blur="codeCheck()"/>
 						<div class="verifyPic" @click="toggle()"><em>{{msg}}</em></div>
 					</div>
 					<div class="inputBox">
-						<input type="text" id="sms" placeholder="输入短信验证码" />
-						<div class="smsBox">获取验证码</div>
+						<input type="text" v-model="username" placeholder="输入用户名" @blur="nameCheck()"/>
+						<!--<div class="smsBox">获取验证码</div>-->
 					</div>
 					<div class="inputBox">
-						<input type="password" id="password" placeholder="请设置6-16位登录密码" />
+						<input type="password" v-model="pwd" placeholder="请设置6-16位登录密码" @blur="pwdCheck()"/>
 					</div>
 					<!--表单控件部分===============结束=============-->
 					<div class="deal">
 						注册即视为同意<em><<洋码头用户协议>></em>
 					</div>
-					<div class="message"></div>
-					<button class="but">注册</button>
+					<div v-show="showTishi" class="showTishi">{{warning}}</div>
+					<button class="but" @click="regist()">注册</button>
 				</div>
 			</div>
 		</div>
@@ -37,16 +37,95 @@
 </template>
 
 <script>
+	import axios from 'axios';
 	export default {
 		name: 'Regist',
 		data() {
 			return {
-				msg: Math.random().toString(32).substr(2, 4)
+				msg: Math.random().toString(32).substr(2, 4),
+				showTishi : false,
+				warning :"",
+				tel : "",
+				code :"",
+				username :"",
+				pwd :"",
+				flagTel : "",
+				flagCode : "",
+				flagName : "",
+				flagPwd  : ""
 			}
 		},
 		methods: {
 			toggle() {
 				this.msg = Math.random().toString(32).substr(2, 4)
+			},
+			telPhone(){  //手机号
+				var reg=/^1[3,5,8]\d{9}$/
+				if( reg.test(this.tel) ){
+					this.showTishi = true
+					this.warning = "手机格式输入正确"
+					this.flagTel = true
+				}else{
+					this.showTishi = true
+					this.warning = "手机格式输入错误"
+					this.flagTel = false
+				}
+			},
+			codeCheck(){  //验证码
+				if( this.code==this.msg ){
+					this.showTishi = true
+					this.warning = "正确"
+					this.flagCode = true
+				}else{
+					this.showTishi = true
+					this.warning = "验证码错误,请重新输入"
+					this.flagCode = false
+				}
+			},
+			nameCheck(){ //用户名
+				var reg=/^\w{6,16}$/
+				if( reg.test(this.username) ){
+					this.showTishi = true
+					this.warning = "用户名正确"
+					this.flagName = true
+				}else{
+					this.showTishi = true
+					this.warning = "用户名错误"
+					this.flagName = false
+				}
+			},
+			pwdCheck(){ //密码
+				var reg=/^\w{6,16}$/
+				if( reg.test(this.pwd) ){
+					this.showTishi = true
+					this.warning = "输入正确"
+					this.flagPwd = true
+				}else{
+					this.showTishi = true
+					this.warning = "输入6-16位"
+					this.flagPwd = false
+				}
+			},
+			regist(){ //点击提交时
+				//将原有数据放到数组中
+				if(this.flagTel && this.flagCode && this.flagName && this.flagPwd ){
+					axios.post("/api/regist",{
+						username : this.username,
+						pwd : this.pwd
+					})
+					.then((res) => {
+						console.log(res)
+						if(res.data.status==1){
+							alert("注册成功,点击确认2秒后将会跳转")
+							setTimeout(()=>{
+								this.$router.push('/Login')
+							},2000)
+						}else{
+							alert(res.data.message)
+						}
+					})
+					
+				}
 			}
 		}
 	}
