@@ -178,7 +178,7 @@
 				</div>
 				<div>
 					<span class="name">综合评分</span>
-					<span class="grade">4.8</span>
+					<span class="grade">{{goodsInfo.sellerPoint}}</span>
 					<span class="top">高于平均6.9%</span>
 				</div>
 				<div>
@@ -286,9 +286,9 @@
 			<div class="show">
 				<div class="cont">
 					<div class="info">
-						<img :src="$route.params.pImg" />
+						<img :src="goodsInfo.goodsImg" />
 						<div class="desc">
-							<p class="pri"><span>￥</span>{{$route.params.pPrice}}</p>
+							<p class="pri"><span>￥</span>{{goodsInfo.goodsPrice}}</p>
 							<span>库存充足</span>
 						</div>
 					</div>
@@ -327,8 +327,9 @@
 				tips1: "",
 				tips2: "",
 				keyList: [],
-				flag: false,
+				flag: false,//控制选择商品数量的确认框显示或隐藏
 				goodsInfo: {
+					goodsId: "",
 					goodsImg: "",
 					goodsName: "",
 					goodsPrice: "",
@@ -348,7 +349,7 @@
 			axios.get("/item/api/getProductDescriptionInfo?productId=" + this.$route.params.pid)
 				.then((res) => {
 					var infoArr = res.data.result.moduleList;
-					console.log( infoArr );
+//					console.log( infoArr );
 					var length = infoArr.length;
 					for(let i = 0; i < length; i++) {
 						if(infoArr[i].title == "买家须知") {
@@ -366,17 +367,17 @@
 					
 				})
 			
-			axios.get("/home/api/getLikeList?pageNub=1&pageSize=32&" + this.$route.params.pid)
+			axios.get("/home/api/getLikeList?pageNub=1&pageSize=32&productId=" + this.$route.params.pid)
 				.then((res) => {
-					console.log(res.data.likeProductInfo);
+//					console.log(res.data.likeProductInfo);
 					var likeProductInfo = res.data.likeProductInfo;
 					for( var i = 0; i < likeProductInfo.length; i++ ){
 						if( this.$route.params.pid == likeProductInfo[i].id ){
-							console.log( likeProductInfo[i] );
+//							console.log( likeProductInfo[i] );
+							this.goodsInfo.goodsId = likeProductInfo[i].id,
 							this.goodsInfo.goodsImg = likeProductInfo[i].pic,
 							this.goodsInfo.goodsName = likeProductInfo[i].name,
 							this.goodsInfo.goodsPrice = likeProductInfo[i].price,
-							this.goodsInfo.goodsNum = likeProductInfo[i],
 							this.goodsInfo.countryImg = likeProductInfo[i].sellerInfo.countryIconUrl,
 							this.goodsInfo.countryName = likeProductInfo[i].sellerInfo.countryName
 							this.goodsInfo.sellerName = likeProductInfo[i].sellerInfo.name,
@@ -415,7 +416,7 @@
 				    message: '哈尼,加入购物车成功~',
 				    duration: 1400
 				});
-				console.log(this.goodsInfo);
+//				console.log(this.goodsInfo);
 			},
 			
 			/*点击数量增加*/

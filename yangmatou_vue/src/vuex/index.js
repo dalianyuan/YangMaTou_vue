@@ -9,8 +9,15 @@ const store = new Vuex.Store({
 	},
 	mutations: {
 		goods_addM(state, data){
+//			console.log( data );
+//			console.log( state.goodsList );
+			for( var i = 0; i < state.goodsList.length; i++ ){
+				if( data.goodsId == state.goodsList[i].goodsId ){
+					state.goodsList[i].goodsNum = parseInt(state.goodsList[i].goodsNum) + parseInt(data.goodsNum);
+					return;
+				}
+			}
 			state.goodsList.push( data );
-			localStorage.goodsList = state.goodsList;
 		}
 	},
 	actions: {

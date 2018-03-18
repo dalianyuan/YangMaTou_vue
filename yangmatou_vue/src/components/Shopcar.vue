@@ -18,9 +18,9 @@
 			<div class="list"  v-for="item in $store.state.goodsList">
 				<div class="seller">
 					<input type="checkbox" />
-					<img src="../../static/img/413235_5d182d0f907344a6977f04e500b642e8_m.jpg" alt="" />
+					<img :src="item.sellerImg" alt="" />
 					<div class="sInfo">
-						<p>小枫叶Sunny</p>
+						<p>{{item.sellerName}}</p>
 						<p>
 							<img :src="item.countryImg" alt="" />
 							<span class="country">{{item.countryName}}</span>
