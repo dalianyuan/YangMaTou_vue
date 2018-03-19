@@ -24,6 +24,7 @@
 
 <script>
 	import axios from 'axios';
+	import { Toast } from 'mint-ui';
 	export default {
 		name: "Login",
 		data() {
@@ -47,12 +48,18 @@
 				.then((res) => {
 					console.log(res)
 					if(res.data.status==1){
-						alert("登录成功,点击确认2秒后将会跳转")
+						Toast({
+							message: '哈尼,登录成功。2秒后跳转到首页~',
+							duration: 1800
+						});
 						setTimeout(()=>{
 							this.$router.push('/')
 						},2000)
 					}else{
-						alert(res.data.message)
+						Toast({
+							message: res.data.message,
+							duration: 1400
+						});
 					}
 				})
 			}

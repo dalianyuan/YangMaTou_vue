@@ -11,24 +11,24 @@
 				<div class="center">
 					<!--表单控件部分============================-->
 					<div class="inputBox">
-						<input type="tel" v-model="tel" placeholder="输入手机号" @blur="telPhone()"/>
+						<input type="tel" v-model="tel" placeholder="输入手机号" @blur="telPhone()" />
 					</div>
 					<div class="inputBox">
-						<input type="text" v-model="code" placeholder="输入图形验证码" @blur="codeCheck()"/>
+						<input type="text" v-model="code" placeholder="输入图形验证码" @blur="codeCheck()" />
 						<div class="verifyPic" @click="toggle()"><em>{{msg}}</em></div>
 					</div>
 					<div class="inputBox">
-						<input type="text" v-model="username" placeholder="输入用户名" @blur="nameCheck()"/>
+						<input type="text" v-model="username" placeholder="输入用户名" @blur="nameCheck()" />
 						<!--<div class="smsBox">获取验证码</div>-->
 					</div>
 					<div class="inputBox">
-						<input type="password" v-model="pwd" placeholder="请设置6-16位登录密码" @blur="pwdCheck()"/>
+						<input type="password" v-model="pwd" placeholder="请设置6-16位登录密码" @blur="pwdCheck()" />
 					</div>
 					<!--表单控件部分===============结束=============-->
 					<div class="deal">
 						注册即视为同意<em><<洋码头用户协议>></em>
 					</div>
-					<div v-show="showTishi" class="showTishi">{{warning}}</div>
+					<div v-show="showTishi" class="showTishi" :class="(flagOk)?'ok':''">{{warning}}</div>
 					<button class="but" @click="regist()">注册</button>
 				</div>
 			</div>
@@ -38,93 +38,109 @@
 
 <script>
 	import axios from 'axios';
+	import { Toast } from 'mint-ui';
 	export default {
 		name: 'Regist',
 		data() {
 			return {
 				msg: Math.random().toString(32).substr(2, 4),
-				showTishi : false,
-				warning :"",
-				tel : "",
-				code :"",
-				username :"",
-				pwd :"",
-				flagTel : "",
-				flagCode : "",
-				flagName : "",
-				flagPwd  : ""
+				showTishi: false,
+				warning: "",
+				tel: "",
+				code: "",
+				username: "",
+				pwd: "",
+				flagTel: "",
+				flagCode: "",
+				flagName: "",
+				flagPwd: "",
+				flagOk: false
 			}
 		},
 		methods: {
 			toggle() {
 				this.msg = Math.random().toString(32).substr(2, 4)
 			},
-			telPhone(){  //手机号
-				var reg=/^1[3,5,8]\d{9}$/
-				if( reg.test(this.tel) ){
+			telPhone() { //手机号
+				var reg = /^1[3,5,8]\d{9}$/
+				if(reg.test(this.tel)) {
 					this.showTishi = true
 					this.warning = "手机格式输入正确"
 					this.flagTel = true
-				}else{
+					this.flagOk = true
+				} else {
 					this.showTishi = true
 					this.warning = "手机格式输入错误"
 					this.flagTel = false
+					this.flagOk = false
 				}
 			},
-			codeCheck(){  //验证码
-				if( this.code==this.msg ){
+			codeCheck() { //验证码
+				if(this.code == this.msg) {
 					this.showTishi = true
 					this.warning = "正确"
 					this.flagCode = true
-				}else{
+					this.flagOk = true
+				} else {
 					this.showTishi = true
 					this.warning = "验证码错误,请重新输入"
 					this.flagCode = false
+					this.flagOk = false
 				}
 			},
-			nameCheck(){ //用户名
-				var reg=/^\w{6,16}$/
-				if( reg.test(this.username) ){
+			nameCheck() { //用户名
+				var reg = /^\w{6,16}$/
+				if(reg.test(this.username)) {
 					this.showTishi = true
 					this.warning = "用户名正确"
 					this.flagName = true
-				}else{
+					this.flagOk = true
+				} else {
 					this.showTishi = true
 					this.warning = "用户名错误"
 					this.flagName = false
+					this.flagOk = false
 				}
 			},
-			pwdCheck(){ //密码
-				var reg=/^\w{6,16}$/
-				if( reg.test(this.pwd) ){
+			pwdCheck() { //密码
+				var reg = /^\w{6,16}$/
+				if(reg.test(this.pwd)) {
 					this.showTishi = true
 					this.warning = "输入正确"
 					this.flagPwd = true
-				}else{
+					this.flagOk = true
+				} else {
 					this.showTishi = true
 					this.warning = "输入6-16位"
 					this.flagPwd = false
+					this.flagOk = false
 				}
 			},
-			regist(){ //点击提交时
+			regist() { //点击提交时
 				//将原有数据放到数组中
-				if(this.flagTel && this.flagCode && this.flagName && this.flagPwd ){
-					axios.post("/api/regist",{
-						username : this.username,
-						pwd : this.pwd
-					})
-					.then((res) => {
-						console.log(res)
-						if(res.data.status==1){
-							alert("注册成功,点击确认2秒后将会跳转")
-							setTimeout(()=>{
-								this.$router.push('/Login')
-							},2000)
-						}else{
-							alert(res.data.message)
-						}
-					})
-					
+				if(this.flagTel && this.flagCode && this.flagName && this.flagPwd) {
+					axios.post("/api/regist", {
+							username: this.username,
+							pwd: this.pwd
+						})
+						.then((res) => {
+							console.log(res)
+							if(res.data.status == 1) {
+								Toast({
+									message: '哈尼,注册成功。2秒后跳转~',
+									duration: 1800
+								});
+								setTimeout(() => {
+									this.$router.push('/Login')
+								}, 2000)
+							} else {
+								Toast({
+									message: res.data.message,
+									duration: 1400
+								});
+							}
+						})
+
 				}
 			}
 		}
@@ -132,34 +148,34 @@
 </script>
 
 <style scoped>
-	
 	.Register {
 		width: 100%;
 		height: 100%;
 	}
 	
-	.title{
+	.title {
 		position: relative;
 		width: 100%;
-	    height: .44rem;
-	    line-height: .44rem;
-	    font-size: 17px;
-	    color: #646464;
-	    text-align: center;
-	    background-color: #fff;
+		height: .44rem;
+		line-height: .44rem;
+		font-size: 17px;
+		color: #646464;
+		text-align: center;
+		background-color: #fff;
 	}
-	.title span{
+	
+	.title span {
 		position: absolute;
-	    display: block;
-	    width: .12rem;
-	    height: .12rem;
-	    border-width: .01rem;
-	    border-style: solid;
-	    border-color: #9b9b9b #9b9b9b transparent transparent;
-	    -webkit-transform: translate(0,-50%) rotate(-135deg);
-	    transform: translate(0,-50%) rotate(-135deg);
-	    top: 50%;
-	    left: .16rem;
+		display: block;
+		width: .12rem;
+		height: .12rem;
+		border-width: .01rem;
+		border-style: solid;
+		border-color: #9b9b9b #9b9b9b transparent transparent;
+		-webkit-transform: translate(0, -50%) rotate(-135deg);
+		transform: translate(0, -50%) rotate(-135deg);
+		top: 50%;
+		left: .16rem;
 	}
 	
 	.centerBar {
@@ -242,6 +258,15 @@
 		visibility: hidden;
 	}
 	
+	.showTishi{
+		padding: .12rem 0;
+		color: #c33;
+	}
+	
+	.ok{
+		color: green;
+	}
+	
 	.but {
 		width: 100%;
 		height: 0.38rem;
@@ -253,5 +278,6 @@
 		color: #fff;
 		border: 0;
 		border-radius: 0.02rem;
+		margin-top: .26rem;
 	}
 </style>
